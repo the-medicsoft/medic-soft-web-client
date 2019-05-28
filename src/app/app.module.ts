@@ -6,14 +6,18 @@ import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MainNavComponent } from './main-nav/main-nav.component';
 import { LayoutModule } from '@angular/cdk/layout';
-import { MatToolbarModule, MatButtonModule, MatSidenavModule, MatIconModule, MatListModule } from '@angular/material';
+import { MatToolbarModule, MatButtonModule, MatSidenavModule, MatIconModule, MatListModule, MatDialogModule } from '@angular/material';
 import { LoginComponent } from './login/login.component';
+import { DialogComponent } from './dialog/dialog.component';
+import { DialogService } from './services/dialog.service';
+
 
 @NgModule({
   declarations: [
     AppComponent,
     MainNavComponent,
-    LoginComponent
+    LoginComponent,
+    DialogComponent
   ],
   imports: [
     BrowserModule,
@@ -24,9 +28,11 @@ import { LoginComponent } from './login/login.component';
     MatButtonModule,
     MatSidenavModule,
     MatIconModule,
-    MatListModule
+    MatListModule,
+    MatDialogModule
   ],
-  providers: [],
+  entryComponents: [DialogComponent],
+  providers: [DialogService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
