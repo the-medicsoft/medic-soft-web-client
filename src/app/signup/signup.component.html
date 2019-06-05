@@ -1,0 +1,68 @@
+<div fxLayout="row" fxLayoutAlign="center center" class="signup-main">
+  <mat-card>
+    <mat-card-header>
+      <mat-card-title>
+        Register With MedicSoft 
+      </mat-card-title>
+    </mat-card-header>
+    <mat-card-content fxLayout="column" *ngIf=!showSetPasswordFrom>
+        <mat-form-field>
+          <input matInput placeholder="Email">
+        </mat-form-field>
+        <mat-form-field>
+          <input matInput placeholder="First Name">
+        </mat-form-field>
+        <mat-form-field>
+          <input matInput placeholder="Last Name">
+        </mat-form-field>
+        <mat-form-field>
+          <input matInput placeholder="Date Of Birth">
+        </mat-form-field>
+        <label id="form-radio-group-label">Gender</label>
+        <mat-radio-group class="form-radio-group" [(ngModel)]="gender">
+          <mat-radio-button class="form-radio-button" [value]="M">
+            Male
+          </mat-radio-button>
+          <mat-radio-button class="form-radio-button" [value]="F">
+            Female
+          </mat-radio-button>
+        </mat-radio-group>
+        <mat-form-field>
+          <input matInput placeholder="Phone Number">
+        </mat-form-field>     
+        <br>
+        <mat-card-subtitle><b>Address</b></mat-card-subtitle>
+        <mat-form-field>
+          <input matInput placeholder="Line 1">
+        </mat-form-field>
+        <mat-form-field>
+          <input matInput placeholder="Line 2">
+        </mat-form-field>
+        <mat-form-field>
+          <input matInput placeholder="Country">
+        </mat-form-field>   
+        <mat-form-field>
+          <input matInput placeholder="State">
+        </mat-form-field>
+        <mat-form-field>
+          <input matInput placeholder="Zip Code">
+        </mat-form-field>      
+    </mat-card-content>
+    <mat-card-actions align="end" *ngIf=!showSetPasswordFrom> 
+      <button mat-raised-button color="primary" routerLink='/login'>Cancel</button>
+      <button mat-raised-button color="primary" (click)=setPassword(true)>Register</button>
+    </mat-card-actions>
+    <mat-card-content fxLayout="column" *ngIf=showSetPasswordFrom>
+        <mat-form-field>
+          <input matInput placeholder="Password">
+        </mat-form-field>
+        <mat-form-field>
+          <input matInput placeholder="Re Enter Password">
+        </mat-form-field>
+    </mat-card-content>
+    <mat-card-actions align="end" *ngIf=showSetPasswordFrom> 
+      <button mat-raised-button color="primary" (click)=setPassword(false) >Back</button>
+      <button mat-raised-button color="primary">Register</button>
+    </mat-card-actions>
+  </mat-card>
+</div>

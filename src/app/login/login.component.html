@@ -2,7 +2,7 @@
   <mat-card>
     <mat-card-header>
       <mat-card-title>
-        Login To MedicSoft
+        Login
       </mat-card-title>
     </mat-card-header>
     <mat-card-content fxLayout="column">
@@ -13,7 +13,9 @@
             <input type="password" matInput placeholder="password">       
           </mat-form-field>
     </mat-card-content>
+    <a routerLink='/forgotpassword'>Forgot Password</a>
     <mat-card-actions align="end">
+        <button mat-raised-button color="primary" routerLink='/signup'>Sign Up</button>
         <button mat-raised-button color="primary">Login</button>
      </mat-card-actions>
   </mat-card>
