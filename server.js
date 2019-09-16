@@ -10,7 +10,7 @@ const dirToServe = path.join(__dirname, 'dist/MedicSoft-App');
 
 app.use(express.static(dirToServe));
 
-app.get('/', (req, res, next) => {
+app.get('*/', (req, res, next) => {
   res.sendFile(dirToServe + '/index.html');
 });
 
