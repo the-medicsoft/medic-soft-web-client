@@ -15,7 +15,8 @@ export class SignupComponent implements OnInit {
   showSetPasswordFrom: boolean = false;
   signUpForm : FormGroup;
   states;
-  cities
+  cities;
+  phoneNumber = "^(\+\d{1,3}[- ]?)?\d{10}$";
 
   get f() {return this.signUpForm.controls}
   
@@ -62,7 +63,7 @@ export class SignupComponent implements OnInit {
       lastName: ['', [Validators.required]],
       dob: ['', [Validators.required]],
       gender: ['M', [Validators.required]],
-      phn: ['', [Validators.required]],
+      phn: ['', [Validators.required,Validators.pattern(this.phoneNumber)]],
       line1: ['', [Validators.required]],
       line2: ['', []],
       country: ['', [Validators.required]],
