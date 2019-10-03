@@ -1,5 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { HttpClientModule } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -14,6 +15,8 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 import { SignupComponent } from './signup/signup.component';
 import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
 import { FormsModule } from '@angular/forms';
+import { DoctorsComponent } from './doctors/doctors.component';
+import { DoctorsService } from './services/doctors.service';
 
 
 @NgModule({
@@ -23,7 +26,8 @@ import { FormsModule } from '@angular/forms';
     LoginComponent,
     DialogComponent,
     SignupComponent,
-    ForgotPasswordComponent
+    ForgotPasswordComponent,
+    DoctorsComponent
   ],
   imports: [
     BrowserModule,
@@ -41,10 +45,11 @@ import { FormsModule } from '@angular/forms';
     MatFormFieldModule,
     MatInputModule,
     FlexLayoutModule,
-    MatRadioModule
+    MatRadioModule,
+    HttpClientModule
   ],
   entryComponents: [DialogComponent],
-  providers: [DialogService],
+  providers: [DialogService, DoctorsService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
