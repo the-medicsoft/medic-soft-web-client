@@ -1,3 +1,30 @@
-<p>
-  doctors works!
-</p>
+<div id='doctors'>
+  <div class='doctor' *ngFor='let doctor of doctors'>
+    FirstName: {{doctor.firstName}} <br />
+    LastName: {{doctor.lastName}} <br />
+    DOJ: {{doctor.DOJ}} <br />
+    Address: {{doctor.address | json}} <br />
+    Contacts: {{doctor.contacts | json}} <br />
+    Department: {{doctor.department | json}} <br />
+    Designation: {{doctor.designation}} <br />
+    Gender: {{doctor.gender}} <br />
+    Location: {{doctor.location | json}} <br />
+    qualifications: {{doctor.qualifications}} <br />
+    Specialisations: {{doctor.specialisations}} <br />
+    VisitingTime: {{doctor.visitingTime | json}} <br />
+    <button (click)="bookAppointment(doctor)">Book Appointment</button>
+  </div>
+</div>
+
+<style>
+  #doctors {
+    margin: 0;
+    padding-left: 25px;
+    padding-right: 25px;
+  }
+
+  .doctor {
+    padding: 10px;
+    border-bottom: 1px solid #B9BFC7;
+  }
+</style>

@@ -8,18 +8,28 @@ import { Doctor } from './Doctor';
   styleUrls: ['./doctors.component.scss']
 })
 export class DoctorsComponent implements OnInit {
-  doctorsURL = 'http://localhost:4000/api/v1/doctors?contacts.email=Jamaal64@yahoo.com';
-  doctors: Doctor;
+  public doctors: Doctor[];
 
   constructor(private doctorsService: DoctorsService) { }
 
   ngOnInit() {
-    this.getDoctors();
+    this.getDoctorsByLocation();
   }
 
   getDoctors() {
-    this.doctorsService.getDoctors().subscribe(data => {
-      console.log(data[0]);
-    });
+    this.doctorsService.getDoctors().subscribe(doctors => this.doctors = doctors);
+  }
+
+  getDoctorsByLocation() {
+    navigator.geolocation.getCurrentPosition(
+      (position) => {
+        this.doctorsService.getDoctorsByLocation(position).subscribe(doctors => this.doctors = doctors);
+      },
+      (error) => { });
+  }
+
+  bookAppointment(doctor) {
+    const _doctor = new Doctor(undefined, undefined, undefined, doctor.department, undefined, doctor.firstName, undefined, undefined, undefined, undefined, doctor.lastName, undefined, undefined, undefined, undefined);
+    console.log(_doctor);
   }
 }
