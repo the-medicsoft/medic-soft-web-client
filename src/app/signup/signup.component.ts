@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MustMatch } from '../_helpers/must-match.validator'
 import { HttpClient } from '@angular/common/http'
 import data from '../../data/India-state-data.json'
+import { SignupService } from './signup.service'
 
 @Component({
   selector: 'app-signup',
@@ -10,7 +11,7 @@ import data from '../../data/India-state-data.json'
   styleUrls: ['./signup.component.scss']
 })
 export class SignupComponent implements OnInit { 
-  constructor(private formBuilder : FormBuilder, private httpService: HttpClient) { }
+  constructor(private formBuilder : FormBuilder, private httpService: HttpClient, private signupService: SignupService) { }
 
   showSetPasswordFrom: boolean = false;
   signUpForm : FormGroup;
@@ -37,6 +38,9 @@ export class SignupComponent implements OnInit {
   }
 
   onSubmit() {
+
+    var data=this.signupService.saveUsers();
+
     if (this.signUpForm.invalid) {
       console.log(this.signUpForm)
       return;
