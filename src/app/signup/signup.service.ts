@@ -9,15 +9,11 @@ import { getMultipleValuesInSingleSelectionError } from '@angular/cdk/collection
 export class SignupService {
 
   constructor(private http: HttpClient) {
-}
+  }
 
-saveUsers(){
-
-  return this.http.get('http://localhost:4000/api/v1/signup').subscribe(data=>{
-    console.log('Welcome', data)
-  })
-
-}
-
-
+  signUp() {
+    return this.http.get('http://localhost:4000/api/v1/signup').subscribe(data => {
+      console.log('Welcome', data);
+    });
+  }
 }
