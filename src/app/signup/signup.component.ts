@@ -3,7 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MustMatch } from '../_helpers/must-match.validator'
 import { HttpClient } from '@angular/common/http'
 import data from '../../data/India-state-data.json'
-import { SignupService } from './signup.service'
+import { SignupService } from '../services/signup.service'
 
 @Component({
   selector: 'app-signup',
@@ -39,7 +39,7 @@ export class SignupComponent implements OnInit {
 
   onSubmit() {
 
-    var data=this.signupService.saveUsers();
+    var data=this.signupService.signUp();
 
     if (this.signUpForm.invalid) {
       console.log(this.signUpForm)

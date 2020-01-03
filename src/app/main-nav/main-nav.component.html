@@ -1,10 +1,9 @@
 <mat-sidenav-container class="sidenav-container">
-  <mat-sidenav #drawer class="sidenav" 
-      fixedInViewport="false">
-      <!-- [ngClass]="{hidden: !(isHandset$ | async)}"       -->
-      <!-- [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'" -->
-      <!-- [mode]="(isHandset$ | async) ? 'over' : 'side'" -->
-      <!-- [opened]="!(isHandset$ | async)"> -->
+  <mat-sidenav #drawer class="sidenav" fixedInViewport="false">
+    <!-- [ngClass]="{hidden: !(isHandset$ | async)}"       -->
+    <!-- [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'" -->
+    <!-- [mode]="(isHandset$ | async) ? 'over' : 'side'" -->
+    <!-- [opened]="!(isHandset$ | async)"> -->
     <mat-toolbar>Menu</mat-toolbar>
     <mat-nav-list>
       <a mat-list-item (click)="openDialog(1)">Link 1</a>
@@ -14,20 +13,24 @@
   </mat-sidenav>
   <mat-sidenav-content>
     <mat-toolbar color="primary">
-      <button
-        type="button"
-        aria-label="Toggle sidenav"
-        mat-icon-button
-        (click)="drawer.toggle()">
+      <button type="button" aria-label="Toggle sidenav" mat-icon-button (click)="drawer.toggle()">
         <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
       </button>
       <span>MedicSoft-App</span>
-      <div class="nav-toolbar-list">
-      <a class="toolbar-list"  routerLink="/login" *ngIf=showLogin >
-        <mat-icon aria-label="Side nav toggle icon">forward</mat-icon> Login
-      </a>
-    </div>
+      <div class="nav-toolbar-list" *ngIf="isLoggedIn; else loggedOut">
+        <a class="toolbar-list" routerLink="/">
+          {{currentUser}}
+        </a>
+      </div>
     </mat-toolbar>
     <ng-content></ng-content>
   </mat-sidenav-content>
 </mat-sidenav-container>
+
+<ng-template #loggedOut>
+  <div class="nav-toolbar-list">
+    <a class="toolbar-list" routerLink="/login">
+      <mat-icon aria-label="Side nav toggle icon">forward</mat-icon> {{currentUser}}
+    </a>
+  </div>
+</ng-template>

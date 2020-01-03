@@ -17,10 +17,7 @@ import { ForgotPasswordComponent } from './forgot-password/forgot-password.compo
 import { ReactiveFormsModule,FormsModule } from '@angular/forms';
 import { FacebookLoginComponent } from './facebook-login/facebook-login.component';
 import { GoogleLoginComponent } from './google-login/google-login.component';
-import {LoginService } from './login/login.service';
 import { AfterLoginComponent } from './after-login/after-login.component';
-
-
 
 @NgModule({
   declarations: [
