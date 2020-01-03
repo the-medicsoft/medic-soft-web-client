@@ -5,41 +5,41 @@
         Login
       </mat-card-title>
     </mat-card-header>
-    <mat-card-content fxLayout="column">        
-        <mat-form-field>
-          <input matInput placeholder="Email" formControlName="email">
-          <mat-error *ngIf="f.email.errors && f.email.errors.required">
-            Email is Required
-          </mat-error>
-          <mat-error *ngIf="f.email.errors && f.email.errors.email">
-            Email must be a valid email address
-          </mat-error>
-        </mat-form-field>
-        <mat-form-field>
-          <input type="password" matInput placeholder="password" formControlName="password" >  
-            <mat-error *ngIf="f.password.errors && f.password.errors.required">
-              Password is Required
-            </mat-error>
-            <mat-error *ngIf="f.password.errors && f.password.errors.minlength">
-                Password must be at least 6 characters
-            </mat-error>     
-        </mat-form-field>
+    <mat-card-content fxLayout="column">
+      <mat-form-field>
+        <input matInput placeholder="Email" formControlName="email">
+        <mat-error *ngIf="f.email.errors && f.email.errors.required">
+          Email is Required
+        </mat-error>
+        <mat-error *ngIf="f.email.errors && f.email.errors.email">
+          Email must be a valid email address
+        </mat-error>
+      </mat-form-field>
+      <mat-form-field>
+        <input type="password" matInput placeholder="password" formControlName="password">
+        <mat-error *ngIf="f.password.errors && f.password.errors.required">
+          Password is Required
+        </mat-error>
+        <mat-error *ngIf="f.password.errors && f.password.errors.minlength">
+          Password must be at least 6 characters
+        </mat-error>
+      </mat-form-field>
     </mat-card-content>
     <a routerLink='/forgotpassword'>Forgot Password</a>
     <mat-card-actions align="end">
-        <button mat-raised-button color="primary" routerLink='/signup'>Sign Up</button>
-        <button mat-raised-button color="primary" (click)="onSubmit()">Login</button>
-     </mat-card-actions>
+      <button mat-raised-button color="primary" routerLink='/signup'>Sign Up</button>
+      <button mat-raised-button color="primary" (click)="onSubmit()">Login</button>
+    </mat-card-actions>
   </mat-card>
 </div>
 <div fxLayout="row" fxLayoutAlign="center center" class="login-sec">
-    <mat-card class="login-sec ">
-        <button class="loginBtn loginBtn--facebook" routerLink='/facebookLogin'>
-            Login with Facebook
-          </button>
-          
-          <button class="loginBtn loginBtn--google" routerLink='/googleLogin'>
-            Login with Google
-          </button>
-      </mat-card>
+  <mat-card class="login-sec ">
+    <button class="loginBtn loginBtn--facebook" routerLink='/facebookLogin'>
+      Login with Facebook
+    </button>
+
+    <button class="loginBtn loginBtn--google" routerLink='/googleLogin'>
+      Login with Google
+    </button>
+  </mat-card>
 </div>

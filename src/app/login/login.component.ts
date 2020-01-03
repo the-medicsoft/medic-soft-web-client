@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { LoginService } from './login.service';
+import { LoginService } from '../services/login.service';
 import { Router } from '@angular/router';
 
 @Component({
@@ -10,6 +10,8 @@ import { Router } from '@angular/router';
 })
 export class LoginComponent implements OnInit {
   userData = [];
+
+  public userEmail;
 
   constructor(private formBuilder: FormBuilder, private loginService: LoginService, private router: Router) { }
 
@@ -23,7 +25,11 @@ export class LoginComponent implements OnInit {
     } else {
       this.loginService
         .login(this.loginForm.value)
-        .subscribe();
+        .subscribe(result => {
+          if (result) {
+            this.router.navigateByUrl('/');
+          }
+        });
     }
   }
 
