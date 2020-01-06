@@ -5,15 +5,14 @@ import { ForgotPasswordComponent } from './forgot-password/forgot-password.compo
 import { SignupComponent } from './signup/signup.component'
 import { FacebookLoginComponent } from './facebook-login/facebook-login.component'
 import { GoogleLoginComponent } from './google-login/google-login.component'
-import { AfterLoginComponent } from './after-login/after-login.component';
 
 const routes: Routes = [
   {path: 'login', component: LoginComponent},
+  {path: 'logout', component: LoginComponent},
   {path: 'forgotpassword', component: ForgotPasswordComponent},
   {path: 'signup', component: SignupComponent},
   {path: 'facebookLogin', component: FacebookLoginComponent},
-  {path: 'googleLogin', component: GoogleLoginComponent},
-  {path: 'afterlogin', component: AfterLoginComponent}
+  {path: 'googleLogin', component: GoogleLoginComponent}
 ];
 
 @NgModule({

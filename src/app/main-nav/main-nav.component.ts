@@ -22,7 +22,7 @@ export class MainNavComponent implements OnInit, OnDestroy {
   currentUser: any;
   currentUserSubscription: Subscription;
 
-  constructor(private breakpointObserver: BreakpointObserver, private dialogService: DialogService, private loginService: LoginService) {}
+  constructor(private breakpointObserver: BreakpointObserver, private dialogService: DialogService, private loginService: LoginService) { }
 
   openDialog(num: any) {
     const dialogData: DialogData = {
@@ -45,7 +45,7 @@ export class MainNavComponent implements OnInit, OnDestroy {
     this.currentUserSubscription = this.loginService.currentUser.subscribe(email => {
       if (email) {
         this.isLoggedIn = true;
-        this.currentUser = email;
+        this.currentUser = email.match(/([^@]+)/)[0];
       } else {
         this.isLoggedIn = false;
         this.currentUser = 'Login';
