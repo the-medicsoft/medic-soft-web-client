@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { LoginService } from '../services/login.service';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -13,9 +13,14 @@ export class LoginComponent implements OnInit {
 
   public userEmail;
 
-  constructor(private formBuilder: FormBuilder, private loginService: LoginService, private router: Router) { }
-
   loginForm: FormGroup;
+
+  constructor(
+    private formBuilder: FormBuilder,
+    private loginService: LoginService,
+    private router: Router,
+    private activatedRoute: ActivatedRoute
+  ) { }
 
   get f() { return this.loginForm.controls }
 
@@ -34,9 +39,20 @@ export class LoginComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.loginForm = this.formBuilder.group({
-      email: ['', [Validators.required, Validators.email]],
-      password: ['', [Validators.required, Validators.minLength(6)]]
+    this.activatedRoute.url.subscribe(url => {
+      if (url[0].path === 'login') {
+        this.loginForm = this.formBuilder.group({
+          email: ['', [Validators.required, Validators.email]],
+          password: ['', [Validators.required, Validators.minLength(6)]]
+        });
+      } else {
+        this.logout();
+      }
     });
+  }
+
+  logout() {
+    this.loginService.logout();
+    this.router.navigateByUrl('/');
   }
 }

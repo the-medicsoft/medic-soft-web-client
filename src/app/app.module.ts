@@ -7,7 +7,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule } from '@angular/common/http';
 import { MainNavComponent } from './main-nav/main-nav.component';
 import { LayoutModule } from '@angular/cdk/layout';
-import { MatDatepickerModule,MatNativeDateModule,MatSelectModule ,MatRadioModule, MatFormFieldModule, MatInputModule, MatCardModule, MatToolbarModule, MatButtonModule, MatSidenavModule, MatIconModule, MatListModule, MatDialogModule } from '@angular/material';
+import { MatDatepickerModule,MatNativeDateModule,MatSelectModule ,MatRadioModule, MatFormFieldModule, MatInputModule, MatCardModule, MatToolbarModule, MatButtonModule, MatSidenavModule, MatIconModule, MatListModule, MatDialogModule, MatMenuModule } from '@angular/material';
 import { LoginComponent } from './login/login.component';
 import { DialogComponent } from './dialog/dialog.component';
 import { DialogService } from './services/dialog.service';
@@ -17,7 +17,6 @@ import { ForgotPasswordComponent } from './forgot-password/forgot-password.compo
 import { ReactiveFormsModule,FormsModule } from '@angular/forms';
 import { FacebookLoginComponent } from './facebook-login/facebook-login.component';
 import { GoogleLoginComponent } from './google-login/google-login.component';
-import { AfterLoginComponent } from './after-login/after-login.component';
 
 @NgModule({
   declarations: [
@@ -28,8 +27,7 @@ import { AfterLoginComponent } from './after-login/after-login.component';
     SignupComponent,
     ForgotPasswordComponent,
     FacebookLoginComponent,
-    GoogleLoginComponent,
-    AfterLoginComponent
+    GoogleLoginComponent
   ],
   imports: [
     BrowserModule,
@@ -53,6 +51,7 @@ import { AfterLoginComponent } from './after-login/after-login.component';
     MatDatepickerModule,
     MatNativeDateModule,
     ReactiveFormsModule,
+    MatMenuModule
   ],
   entryComponents: [DialogComponent],
   providers: [DialogService],
