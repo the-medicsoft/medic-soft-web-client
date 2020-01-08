@@ -2,64 +2,63 @@
   <mat-card [formGroup]="signUpForm">
     <mat-card-header>
       <mat-card-title>
-        Register With MedicSoft 
+        Register With MedicSoft
       </mat-card-title>
     </mat-card-header>
     <mat-card-content fxLayout="column" *ngIf=!showSetPasswordFrom>
+      <mat-form-field>
+        <input matInput placeholder="First Name" formControlName="firstName">
+        <mat-error *ngIf="f.firstName.errors && f.firstName.errors.required">
+          FirstName is Required
+        </mat-error>
+      </mat-form-field>
+      <mat-form-field>
+        <input matInput placeholder="Last Name" formControlName="lastName">
+        <mat-error *ngIf="f.lastName.errors && f.lastName.errors.required">
+          LastName is Required
+        </mat-error>
+      </mat-form-field>
+      <mat-form-field>
+        <input matInput placeholder="Date Of Birth" formControlName="dob" [matDatepicker]="dob">
+        <mat-datepicker-toggle matSuffix [for]="dob"></mat-datepicker-toggle>
+        <mat-datepicker #dob></mat-datepicker>
+        <mat-error *ngIf="f.dob.errors && f.dob.errors.required">
+          Date Of Birth is Required
+        </mat-error>
+      </mat-form-field>
+      <label id="form-radio-group-label">Select Gender</label>
+      <mat-radio-group class="form-radio-group" formControlName="gender" aria-label="Select an option">
+        <mat-radio-button class="form-radio-button" value="M">
+          Male
+        </mat-radio-button>
+        <mat-radio-button class="form-radio-button" value="F">
+          Female
+        </mat-radio-button>
+      </mat-radio-group>
+      <mat-error *ngIf="f.gender.errors && f.gender.errors.required">
+        Please select a gender
+      </mat-error>
+      <div formGroupName="contacts" fxLayout="column">
         <mat-form-field>
           <input matInput placeholder="Email" formControlName="email">
-          <mat-error *ngIf="f.email.errors && f.email.errors.required">
+          <mat-error *ngIf="fcontacts.email.errors && fcontacts.email.errors.required">
             Email is Required
           </mat-error>
-          <mat-error *ngIf="f.email.errors && f.email.errors.email">
+          <mat-error *ngIf="fcontacts.email.errors && fcontacts.email.errors.email">
             Email must be a valid email address
           </mat-error>
         </mat-form-field>
-        <mat-form-field>
-          <input matInput placeholder="First Name" formControlName="firstName">
-          <mat-error *ngIf="f.firstName.errors && f.firstName.errors.required">
-            FirstName is Required
-          </mat-error>
-        </mat-form-field>
-        <mat-form-field>
-          <input matInput placeholder="Last Name" formControlName="lastName">
-          <mat-error *ngIf="f.lastName.errors && f.lastName.errors.required">
-            LastName is Required
-          </mat-error>
-        </mat-form-field>
-        <mat-form-field>
-          <input matInput placeholder="Date Of Birth" formControlName="dob" [matDatepicker] = "dob">
-          <mat-datepicker-toggle matSuffix [for] = "dob"></mat-datepicker-toggle>
-          <mat-datepicker #dob></mat-datepicker>
-          <mat-error *ngIf="f.dob.errors && f.dob.errors.required">
-            Date Of Birth is Required
-          </mat-error>
-        </mat-form-field>
-        <label id="form-radio-group-label">Select Gender</label>
-        <mat-radio-group class="form-radio-group" formControlName="gender" 
-        aria-label="Select an option"        
-        >
-          <mat-radio-button class="form-radio-button" value="M" >
-            Male
-          </mat-radio-button>
-          <mat-radio-button class="form-radio-button" value="F" >
-            Female
-          </mat-radio-button>
-        </mat-radio-group>
-        <mat-error *ngIf="f.gender.errors && f.gender.errors.required">
-            Please select a gender
-        </mat-error>
-        <mat-form-field>
-          <input matInput placeholder="Phone Number" formControlName="phn">
-          <mat-error *ngIf="f.phn.errors && f.phn.errors.required">
-            Phone Number is Required
-          </mat-error>
-        </mat-form-field>     
         <br>
-        <mat-card-subtitle><b>Address</b></mat-card-subtitle>
+        <mat-form-field>
+          <input matInput placeholder="Phone Number" formControlName="phone">
+        </mat-form-field>
+      </div>
+      <br>
+      <mat-card-subtitle><b>Address</b></mat-card-subtitle>
+      <div formGroupName="address" fxLayout="column">
         <mat-form-field>
           <input matInput placeholder="Line 1" formControlName="line1">
-          <mat-error *ngIf="f.line1.errors && f.line1.errors.required">
+          <mat-error *ngIf="faddress.line1.errors && faddress.line1.errors.required">
             Line1 is Required
           </mat-error>
         </mat-form-field>
@@ -68,66 +67,65 @@
         </mat-form-field>
         <mat-form-field>
           <mat-label>Country</mat-label>
-          <mat-select formControlName="country" (selectionChange)="getStates($event.value)">            
+          <mat-select formControlName="country" (selectionChange)="getStates($event.value)">
             <mat-option value="India">India</mat-option>
           </mat-select>
-          <mat-error *ngIf="f.country.errors && f.country.errors.required">
+          <mat-error *ngIf="faddress.country.errors && faddress.country.errors.required">
             Please select a Country
           </mat-error>
-        </mat-form-field>   
-        <mat-form-field>   
-            <mat-label>State</mat-label>       
-          <mat-select formControlName="state" (selectionChange)="getCities($event.value)">            
-            <mat-option *ngFor = "let state of states | keyvalue"
-            [value]=state.key>{{state.key}}</mat-option>
+        </mat-form-field>
+        <mat-form-field>
+          <mat-label>State</mat-label>
+          <mat-select formControlName="state" (selectionChange)="getCities($event.value)">
+            <mat-option *ngFor="let state of states | keyvalue" [value]=state.key>{{state.key}}</mat-option>
           </mat-select>
-          <mat-error *ngIf="f.state.errors && f.state.errors.required">
+          <mat-error *ngIf="faddress.state.errors && faddress.state.errors.required">
             Please select a State
           </mat-error>
         </mat-form-field>
         <mat-form-field>
-          <mat-label>City</mat-label>       
-          <mat-select formControlName="city">            
-            <mat-option *ngFor = "let city of cities"
-            [value]=city>{{city}}</mat-option>
+          <mat-label>City</mat-label>
+          <mat-select formControlName="city">
+            <mat-option *ngFor="let city of cities" [value]=city>{{city}}</mat-option>
           </mat-select>
-          <mat-error *ngIf="f.city.errors && f.city.errors.required">
+          <mat-error *ngIf="faddress.city.errors && faddress.city.errors.required">
             please select a City
           </mat-error>
         </mat-form-field>
         <mat-form-field>
-          <input matInput placeholder="Zip Code" formControlName="zip">
-          <mat-error *ngIf="f.zip.errors && f.zip.errors.required">
+          <input matInput placeholder="Zip Code" formControlName="zipCode">
+          <mat-error *ngIf="faddress.zipCode.errors && faddress.zipCode.errors.required">
             Please enter zip code.
           </mat-error>
-        </mat-form-field>      
+        </mat-form-field>
+      </div>
     </mat-card-content>
-    <mat-card-actions align="end" *ngIf=!showSetPasswordFrom> 
+    <mat-card-actions align="end" *ngIf=!showSetPasswordFrom>
       <button mat-raised-button color="primary" routerLink='/login'>Cancel</button>
       <button mat-raised-button color="primary" (click)=setPassword(true)>Register</button>
     </mat-card-actions>
     <mat-card-content fxLayout="column" *ngIf=showSetPasswordFrom>
-        <mat-form-field>
-          <input type=password matInput placeholder="Password" formControlName="password">
-          <mat-error *ngIf="f.password.errors && f.password.errors.required">
-            Password is Required
-          </mat-error>
-          <mat-error *ngIf="f.password.errors && f.password.errors.minlength">
-              Password must be at least 6 characters
-          </mat-error>
-        </mat-form-field>
-        <mat-form-field>
-          <input type=password matInput placeholder="Re Enter Password" formControlName="confirmPassword">
-          <mat-error *ngIf="f.confirmPassword.errors && f.confirmPassword.errors.required">
-            Confirm Password is Required
-          </mat-error>
-          <mat-error *ngIf="f.confirmPassword.errors && f.confirmPassword.errors.mustMatch">
-            Password must match
-          </mat-error>
-        </mat-form-field>
+      <mat-form-field>
+        <input type=password matInput placeholder="Password" formControlName="password">
+        <mat-error *ngIf="f.password.errors && f.password.errors.required">
+          Password is Required
+        </mat-error>
+        <mat-error *ngIf="f.password.errors && f.password.errors.minlength">
+          Password must be at least 6 characters
+        </mat-error>
+      </mat-form-field>
+      <mat-form-field>
+        <input type=password matInput placeholder="Re Enter Password" formControlName="confirmPassword">
+        <mat-error *ngIf="f.confirmPassword.errors && f.confirmPassword.errors.required">
+          Confirm Password is Required
+        </mat-error>
+        <mat-error *ngIf="f.confirmPassword.errors && f.confirmPassword.errors.mustMatch">
+          Password must match
+        </mat-error>
+      </mat-form-field>
     </mat-card-content>
-    <mat-card-actions align="end" *ngIf=showSetPasswordFrom> 
-      <button mat-raised-button color="primary" (click)=setPassword(false) >Back</button>
+    <mat-card-actions align="end" *ngIf=showSetPasswordFrom>
+      <button mat-raised-button color="primary" (click)=setPassword(false)>Back</button>
       <button mat-raised-button color="primary" (click)="onSubmit()">Register</button>
     </mat-card-actions>
   </mat-card>

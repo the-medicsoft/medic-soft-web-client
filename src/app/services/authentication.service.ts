@@ -5,11 +5,11 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
   providedIn: 'root'
 })
 export class AuthenticationService {
-  private url;
+  private baseUrl;
   private httpHeaders;
 
   constructor(private http: HttpClient) {
-    this.url = 'https://authmedicsoft.herokuapp.com/api/v1/login';
+    this.baseUrl = 'https://authmedicsoft.herokuapp.com/api';
 
     this.httpHeaders = new HttpHeaders({
       'content-type': 'application/json'
@@ -17,10 +17,12 @@ export class AuthenticationService {
   }
 
   login(body) {
-    return this.http.post(this.url, body, { headers: this.httpHeaders });
+    const loginUrl = `${this.baseUrl}/v1/login`;
+    return this.http.post(loginUrl, body, { headers: this.httpHeaders });
   }
 
   signUp(body) {
-    return this.http.post(this.url, body, { headers: this.httpHeaders });
+    const signUpUrl = `${this.baseUrl}/v1/signup`;
+    return this.http.post(signUpUrl, body, { headers: this.httpHeaders });
   }
 }
