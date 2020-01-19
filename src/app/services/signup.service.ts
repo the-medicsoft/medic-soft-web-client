@@ -18,15 +18,17 @@ export class SignupService {
     return this.authenticationService.signUp(body)
       .pipe(map(response => {
         if (response['success']) {
-          const decoded = jwtDecode(response['token']);
 
-          const currentUser = {
-            token: response['token'],
-            user: decoded
-          };
+          // Commenting this part as this causes an error while decoding the token.
+          // const decoded = jwtDecode(response['token']);
 
-          localStorage.setItem('currentUser', JSON.stringify(currentUser));
-          this.currentUserSubject.next(currentUser.user['tokendata']['email']);
+          // const currentUser = {
+          //   token: response['token'],
+          //   user: decoded
+          // };
+
+          // localStorage.setItem('currentUser', JSON.stringify(currentUser));
+          // this.currentUserSubject.next(currentUser.user['tokendata']['email']);
           return true;
         } else {
           return false;

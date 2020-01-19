@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MustMatch } from '../_helpers/must-match.validator';
 import data from '../../data/India-state-data.json';
 import { SignupService } from '../services/signup.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-signup',
@@ -12,7 +13,8 @@ import { SignupService } from '../services/signup.service';
 export class SignupComponent implements OnInit {
   constructor(
     private formBuilder: FormBuilder,
-    private signupService: SignupService
+    private signupService: SignupService,
+    private router: Router
   ) { }
 
   showSetPasswordFrom: boolean = false;
@@ -43,6 +45,9 @@ export class SignupComponent implements OnInit {
       this.signupService.signUp(this.signUpForm.value)
         .subscribe(data => {
           console.log('Welcome', data);
+          if (data) {
+            this.router.navigate(['/login', {email: this.signUpForm.value.contacts.email}]); 
+          }
         });
     }
   }

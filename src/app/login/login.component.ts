@@ -44,6 +44,8 @@ export class LoginComponent implements OnInit {
       } else {
         this.logout();
       }
+      this.loginForm.setValue({email: (url[0].parameters.email), password: ''});
+      
     });
   }
 
