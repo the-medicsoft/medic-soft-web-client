@@ -21,7 +21,7 @@ export class SignupComponent implements OnInit {
   signUpForm: FormGroup;
   states;
   cities;
-
+  
   get f() { return this.signUpForm.controls }
   get faddress() { return this.signUpForm.controls['address']['controls']; }
   get fcontacts() { return this.signUpForm.controls['contacts']['controls']; }
