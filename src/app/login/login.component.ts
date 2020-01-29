@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { LoginService } from '../services/login.service';
+import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -7,24 +9,48 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
   styleUrls: ['./login.component.scss']
 })
 export class LoginComponent implements OnInit {
+  loginForm: FormGroup;
 
-  constructor(private formBuilder : FormBuilder) { }
-  loginForm : FormGroup;
+  constructor(
+    private formBuilder: FormBuilder,
+    private loginService: LoginService,
+    private router: Router,
+    private activatedRoute: ActivatedRoute
+  ) { }
 
-  get f() {return this.loginForm.controls}
+  get f() { return this.loginForm.controls }
 
   onSubmit() {
     if (this.loginForm.invalid) {
-        return;
+      return;
+    } else {
+      this.loginService
+        .login(this.loginForm.value)
+        .subscribe(result => {
+          if (result) {
+            this.router.navigateByUrl('/');
+          }
+        });
     }
-    alert('SUCCESS!! :-)\n\n' + JSON.stringify(this.loginForm.value))
   }
 
   ngOnInit() {
-    this.loginForm = this.formBuilder.group({
-      email: ['', [Validators.required, Validators.email]],
-      password: ['', [Validators.required, Validators.minLength(6)]]
-  });
+    this.activatedRoute.url.subscribe(url => {
+      if (url[0].path === 'login') {
+        this.loginForm = this.formBuilder.group({
+          email: ['', [Validators.required, Validators.email]],
+          password: ['', [Validators.required, Validators.minLength(6)]]
+        });
+      } else {
+        this.logout();
+      }
+      this.loginForm.setValue({email: (url[0].parameters.email), password: ''});
+      
+    });
   }
 
+  logout() {
+    this.loginService.logout();
+    this.router.navigateByUrl('/');
+  }
 }
